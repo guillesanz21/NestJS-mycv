@@ -16,6 +16,7 @@ export class User {
   email: string;
 
   @Column()
+  // @Exclude() // import { Exclude } from 'class-transformer';
   password: string;
 
   @AfterInsert()
@@ -37,3 +38,4 @@ export class User {
 // The @Entity() decorator marks this class as a database table.
 // The @Column() decorator marks the class property as a database column.
 // The @PrimaryGeneratedColumn() decorator marks the class property as the primary key.
+// The @Exclude() decorator marks the class property as excluded from the response.
