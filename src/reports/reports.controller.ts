@@ -23,6 +23,12 @@ import { User } from '../users/user.entity';
 export class ReportsController {
   constructor(private reportsService: ReportsService) {}
 
+  @Get()
+  @UseGuards(AuthGuard)
+  getEstimate(@Query() query: GetEstimateDto) {
+    return this.reportsService.createEstimate(query);
+  }
+
   @Post()
   @UseGuards(AuthGuard)
   @Serialize(ReportDto)
@@ -34,11 +40,5 @@ export class ReportsController {
   @UseGuards(AdminGuard)
   approveReport(@Param('id') id: string, @Body() body: ApproveReportDto) {
     return this.reportsService.changeApproval(id, body.approved);
-  }
-
-  @Get()
-  @UseGuards(AuthGuard)
-  getEstimate(@Query() query: GetEstimateDto) {
-    console.log(query);
   }
 }
